@@ -82,8 +82,6 @@ namespace networkHW.Controllers
 
             return CreatedAtAction("GetStudent", new { id = student.Id }, student);
         }
-        [HttpPost]
-        public async Task
         // DELETE: api/Students/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Student>> DeleteStudent(long id)
