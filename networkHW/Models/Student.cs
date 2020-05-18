@@ -12,6 +12,6 @@ namespace networkHW.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public int No { get; set; }
-        public Course Courses { get; set; }
+        public ICollection <Course> Courses { get; set; }
     }
 }
