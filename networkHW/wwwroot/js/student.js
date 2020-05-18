@@ -4,7 +4,7 @@ let students = [];
 function getStudents() {
     fetch(uriStudent)
         .then(response => response.json())
-        .then(data => _displayItems(data))
+        .then(data => _displayStudents(data))
         .catch(error => console.error('Unable to get items.', error));
 }
 
@@ -26,7 +26,7 @@ function addStudent() {
     })
         .then(response => response.json())
         .then(() => {
-            getItems();
+            getStudents();
             addNameTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
@@ -36,16 +36,16 @@ function deleteStudent(id) {
     fetch(`${uriStudent}/${id}`, {
         method: 'DELETE'
     })
-        .then(() => getItems())
+        .then(() => getStudents())
         .catch(error => console.error('Unable to delete item.', error));
 }
 
-function displayEditForm(id) {
-    const item = courses.find(item => item.id === id);
+function displayEditSForm(id) {
+    const item = students.find(item => item.id === id);
 
     document.getElementById('edit-sname').value = item.name;
     document.getElementById('edit-sid').value = item.id;
-    document.getElementById('editForm').style.display = 'block';
+    document.getElementById('editSForm').style.display = 'block';
 }
 
 function updateStudent() {
@@ -63,7 +63,7 @@ function updateStudent() {
         },
         body: JSON.stringify(item)
     })
-        .then(() => getItems())
+        .then(() => getStudents())
         .catch(error => console.error('Unable to update item.', error));
 
     closeInput();
@@ -72,31 +72,31 @@ function updateStudent() {
 }
 
 function closeStudent() {
-    document.getElementById('editForm').style.display = 'none';
+    document.getElementById('editSForm').style.display = 'none';
 }
 
-function _displayCount(itemCount) {
+function _displaySCount(itemCount) {
     const name = (itemCount === 1) ? 'student' : 'students';
 
-    document.getElementById('counter').innerText = `${itemCount} ${name}`;
+    document.getElementById('scounter').innerText = `${itemCount} ${name}`;
 }
 
-function _displayItems(data) {
+function _displayStudents(data) {
     const tBody = document.getElementById('students');
     tBody.innerHTML = '';
 
-    _displayCount(data.length);
+    _displaySCount(data.length);
 
     const button = document.createElement('button');
 
     data.forEach(item => {
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
-        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
+        editButton.setAttribute('onclick', `displayEditSForm(${item.id})`);
 
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Delete';
-        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
+        deleteButton.setAttribute('onclick', `deleteStudent(${item.id})`);
 
         let tr = tBody.insertRow();
 
