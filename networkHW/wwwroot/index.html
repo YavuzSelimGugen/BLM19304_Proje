@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>OBS CRUD</title>
-    <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
     <h1>OBS CRUD</h1>
-    <h3>Add</h3>
+    <h3>Add Course</h3>
     <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
         <input type="text" id="add-name" placeholder="New Course">
         <input type="submit" value="Add">
@@ -34,9 +33,40 @@
         <tbody id="courses"></tbody>
     </table>
 
-    <script src="js/site.js" asp-append-version="true"></script>
+    <hr>
+
+    <h3>Add Student</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addStudent()">
+        <input type="text" id="add-sname" placeholder="New Student">
+        <input type="submit" value="Add">
+    </form>
+
+    <div id="editForm">
+        <h3>Edit</h3>
+        <form action="javascript:void(0);" onsubmit="updateStudent()">
+            <input type="hidden" id="edit-sid">
+            <input type="text" id="edit-sname">
+            <input type="submit" value="Save">
+            <a onclick="closeStudent()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+
+    <p id="counter"></p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="students"></tbody>
+    </table>
+
+    <script src="js/course.js" asp-append-version="true"></script>
+    <script src="js/student.js" asp-append-version="true"></script>
     <script type="text/javascript">
         getItems();
+        getStudents();
     </script>
 </body>
 </html>
